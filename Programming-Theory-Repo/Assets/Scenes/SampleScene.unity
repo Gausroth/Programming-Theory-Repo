@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2
+  mineTime: 5
+  respawnTime: 0
 --- !u!1 &1919310558 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4620623823759035887, guid: 9cc4bcc04aee1af4bb9c87be5ead97ab, type: 3}
@@ -581,6 +583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2
+  mineTime: 3
+  respawnTime: 0
 --- !u!1 &2014966909 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3049295349466880619, guid: c883f86488fb6c44e93b7480a6428c42, type: 3}
@@ -599,6 +603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2
+  mineTime: 10
+  respawnTime: 0
 --- !u!1001 &1189709303479318608
 PrefabInstance:
   m_ObjectHideFlags: 0

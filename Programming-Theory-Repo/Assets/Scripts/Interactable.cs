@@ -29,7 +29,6 @@ public class Interactable : MonoBehaviour
         //This method is meant to be overwritten.
         Debug.Log("Interacting with " + transform.name);
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
