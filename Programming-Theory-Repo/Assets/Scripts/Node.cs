@@ -4,24 +4,44 @@ using UnityEngine;
 
 public class Node : Interactable // INHERITANCE
 {
+    public float mineTime, mineTimer, respawnTime;
     [SerializeField]
-    float mineTime, respawnTime;
-     
+    string nodeType;
+
+    public HUD hud;
+    public SpawnManager spawnManager;
+
     public override void Interact() // POLYMORPHISM
     {
         base.Interact();
-        mineTime -= 1 * Time.deltaTime;
-        if(mineTime <= 0)
+        mineTimer -= 1 * Time.deltaTime;
+        if(mineTimer <= 0)
         {
             Debug.Log(gameObject.name + " Mined");
 
-            //TODO
-            //Tell RespawnManager to respawn node after respawnTime
-
             gameObject.SetActive(false);
-            
-            //TODO
-            //Add ore to player inventory
+
+            AddOre(nodeType);
+
+            spawnManager.gameObject = gameObject;
+            spawnManager.timer = respawnTime;
         }
+    }
+
+    void AddOre(string nodeType)
+    {
+        switch (nodeType)
+        {
+            case "stone":
+                GameManager.Instance.Stone++;
+                break;
+            case "tin":
+                GameManager.Instance.Tin++;
+                break;
+            case "copper":
+                GameManager.Instance.Copper++;
+                break;
+        }
+        hud.UpdateInventory();
     }
 }
