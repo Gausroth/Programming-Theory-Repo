@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : Interactable
+public class Node : Interactable // INHERITANCE
 {
     [SerializeField]
     float mineTime, respawnTime;
      
-    public override void Interact()
+    public override void Interact() // POLYMORPHISM
     {
         base.Interact();
         mineTime -= 1 * Time.deltaTime;

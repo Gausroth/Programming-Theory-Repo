@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField]
-    private string playerName;
-    public string PlayerName
+    string playerName;
+    public string PlayerName // ENCAPSULATION
     {
         get { return playerName; }
         set { playerName = value; }

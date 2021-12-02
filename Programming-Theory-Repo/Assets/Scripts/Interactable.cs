@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
-    GameObject player { get; set; }
-    public GameObject Player
+    GameObject player;
+    public GameObject Player // ENCAPSULATION
     {
         get { return player; }
         set { player = value; }
@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
             }
         }
     }
-    public virtual void Interact()
+    public virtual void Interact() // ABSTRACTION
     {
         //This method is meant to be overwritten.
         Debug.Log("Interacting with " + transform.name);

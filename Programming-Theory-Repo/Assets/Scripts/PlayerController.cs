@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour
         if (target != null)
         {
             agent.SetDestination(target.position);
-            FaceTarget();
+            FaceTarget(); // ABSTRACTION
 
-            StopAgent(interactable);
+            StopAgent(interactable); // ABSTRACTION
         }
     }
 
