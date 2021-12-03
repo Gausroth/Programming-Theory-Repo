@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
         if (target != null)
         {
             agent.SetDestination(target.position);
