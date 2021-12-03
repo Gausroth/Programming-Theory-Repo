@@ -6,12 +6,7 @@ using UnityEngine.AI;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
-    GameObject player;
-    public GameObject Player // ENCAPSULATION
-    {
-        get { return player; }
-        set { player = value; }
-    }
+    public GameObject player { private get; set; } // ENCAPSULATION
 
     void Update()
     {

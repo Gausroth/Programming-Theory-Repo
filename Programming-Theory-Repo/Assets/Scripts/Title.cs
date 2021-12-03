@@ -15,7 +15,7 @@ public class Title : MonoBehaviour
         else
         {
             string playerName = input.text;
-            GameManager.Instance.PlayerName = playerName;
+            GameManager.Instance.playerName = playerName;
             SceneManager.LoadScene(1);
         }
     }

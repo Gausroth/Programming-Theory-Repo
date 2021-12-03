@@ -4,31 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    [SerializeField]
-    int stone, tin, copper;
-    public int Stone // ENCAPSULATION
-    {
-        get { return stone; }
-        set { stone = value; }
-    }
-    public int Tin // ENCAPSULATION
-    {
-        get { return tin; }
-        set { tin = value; }
-    }
-    public int Copper // ENCAPSULATION
-    {
-        get { return copper; }
-        set { copper = value; }
-    }
+    public static GameManager Instance { get; private set; } // ENCAPSULATION
 
-    string playerName;
-    public string PlayerName // ENCAPSULATION
-    {
-        get { return playerName; }
-        set { playerName = value; }
-    }
+    public int stone, tin, copper, money;
+    public string playerName;
 
     private void Awake()
     {

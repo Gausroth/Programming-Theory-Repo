@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     Camera cam;
     NavMeshAgent agent;
-    public NavMeshAgent Agent { get { return agent; } }
+    public NavMeshAgent Agent { get { return agent; } } // ENCAPSULATION
     [SerializeField]
     Transform target;
     Interactable interactable;
@@ -33,9 +33,7 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.rigidbody != null)
                 {
-                    target = hit.rigidbody.gameObject.transform;
-                    interactable = target.GetComponent<Interactable>();
-                    interactable.Player = transform.gameObject;
+                    SetTarget(hit); // ABSTRACTION
                 }
                 else
                 {
@@ -52,6 +50,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void SetTarget(RaycastHit hit)
+    {
+        target = hit.rigidbody.gameObject.transform;
+        interactable = target.GetComponent<Interactable>();
+        interactable.player = transform.gameObject;
+    }
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;

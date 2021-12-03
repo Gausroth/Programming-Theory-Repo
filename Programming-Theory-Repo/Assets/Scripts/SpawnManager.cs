@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject gameObject;
+    public static SpawnManager Instance { get; private set; } // ENCAPSULATION
 
+    public new GameObject gameObject { private get; set; } // ENCAPSULATION
 
-    public float timer;
+    public float timer { private get; set; } // ENCAPSULATION
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(transform.gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(transform.gameObject);
+    }
     private void Update()
     {
         if(gameObject != null)
         {
-            SpawnNode(gameObject);
+            SpawnNode(gameObject); // ABSTRACTION
         }
     }
     public void SpawnNode(GameObject nodePrefab)

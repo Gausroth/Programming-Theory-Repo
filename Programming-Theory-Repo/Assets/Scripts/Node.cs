@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Node : Interactable // INHERITANCE
 {
-    public float mineTime, mineTimer, respawnTime;
+    public float mineTime, respawnTime, mineTimer;
     [SerializeField]
     string nodeType;
 
     public HUD hud;
-    public SpawnManager spawnManager;
 
     public override void Interact() // POLYMORPHISM
     {
@@ -21,10 +20,10 @@ public class Node : Interactable // INHERITANCE
 
             gameObject.SetActive(false);
 
-            AddOre(nodeType);
+            AddOre(nodeType); // ABSTRACTION
 
-            spawnManager.gameObject = gameObject;
-            spawnManager.timer = respawnTime;
+            SpawnManager.Instance.gameObject = gameObject;
+            SpawnManager.Instance.timer = respawnTime;
         }
     }
 
@@ -33,13 +32,13 @@ public class Node : Interactable // INHERITANCE
         switch (nodeType)
         {
             case "stone":
-                GameManager.Instance.Stone++;
+                GameManager.Instance.stone++;
                 break;
             case "tin":
-                GameManager.Instance.Tin++;
+                GameManager.Instance.tin++;
                 break;
             case "copper":
-                GameManager.Instance.Copper++;
+                GameManager.Instance.copper++;
                 break;
         }
         hud.UpdateInventory();
