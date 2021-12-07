@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
-    public GameObject player { private get; set; } // ENCAPSULATION
 
-    void Update()
+    public GameObject player { protected get; set; } // ENCAPSULATION
+
+    protected virtual void Update()
     {
         if (player != null)
         {
@@ -21,8 +22,7 @@ public class Interactable : MonoBehaviour
     }
     public virtual void Interact() // ABSTRACTION
     {
-        //This method is meant to be overwritten.
-        Debug.Log("Interacting with " + transform.name);
+
     }
     private void OnDrawGizmosSelected()
     {
