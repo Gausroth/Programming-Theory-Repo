@@ -5,6 +5,7 @@ using UnityEngine;
 public class Node : Interactable // INHERITANCE
 {
     public float mineTime, respawnTime, mineTimer;
+
     [SerializeField]
     string nodeType;
 
@@ -13,21 +14,21 @@ public class Node : Interactable // INHERITANCE
     public override void Interact() // POLYMORPHISM
     {
         base.Interact();
+
         mineTimer -= 1 * Time.deltaTime;
+
         if(mineTimer <= 0)
         {
-            Debug.Log(gameObject.name + " Mined");
-
             gameObject.SetActive(false);
 
-            AddOre(nodeType); // ABSTRACTION
+            AddOre(nodeType);
 
             SpawnManager.Instance.gameObject = gameObject;
             SpawnManager.Instance.timer = respawnTime;
         }
     }
 
-    void AddOre(string nodeType)
+    void AddOre(string nodeType) // ABSTRACTION
     {
         switch (nodeType)
         {
@@ -41,6 +42,7 @@ public class Node : Interactable // INHERITANCE
                 GameManager.Instance.copper++;
                 break;
         }
+
         hud.UpdateInventory();
     }
 }

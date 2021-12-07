@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    //TODO: Need to find a better way to handle node respawning. Currently if a node is being respawned and a nother node is being mined the other node will not respawn.
     public static SpawnManager Instance { get; private set; } // ENCAPSULATION
 
-    public new GameObject gameObject { private get; set; } // ENCAPSULATION
+    public new GameObject gameObject;
 
-    public float timer { private get; set; } // ENCAPSULATION
+    public float timer;
 
     private void Awake()
     {
@@ -24,10 +25,10 @@ public class SpawnManager : MonoBehaviour
     {
         if(gameObject != null)
         {
-            SpawnNode(gameObject); // ABSTRACTION
+            SpawnNode(gameObject);
         }
     }
-    public void SpawnNode(GameObject nodePrefab)
+    public void SpawnNode(GameObject nodePrefab) // ABSTRACTION
     {
         Node node = nodePrefab.GetComponent<Node>();
 

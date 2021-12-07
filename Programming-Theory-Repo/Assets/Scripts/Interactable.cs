@@ -22,8 +22,7 @@ public class Interactable : MonoBehaviour
     }
     public virtual void Interact() // ABSTRACTION
     {
-        //This method is meant to be overwritten.
-        Debug.Log("Interacting with " + transform.name);
+
     }
     private void OnDrawGizmosSelected()
     {

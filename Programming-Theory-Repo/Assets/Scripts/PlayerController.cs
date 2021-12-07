@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     Camera cam;
-    NavMeshAgent agent;
-    public NavMeshAgent Agent { get { return agent; } } // ENCAPSULATION
+    public NavMeshAgent agent { get; private set; } // ENCAPSULATION
+
     [SerializeField]
     Transform target;
     Interactable interactable;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.rigidbody != null)
                 {
-                    SetTarget(hit); // ABSTRACTION
+                    SetTarget(hit);
                 }
                 else
                 {
@@ -51,26 +51,26 @@ public class PlayerController : MonoBehaviour
         if (target != null)
         {
             agent.SetDestination(target.position);
-            FaceTarget(); // ABSTRACTION
+            FaceTarget();
 
-            StopAgent(interactable); // ABSTRACTION
+            StopAgent(interactable);
         }
     }
 
-    void SetTarget(RaycastHit hit)
+    void SetTarget(RaycastHit hit) // ABSTRACTION
     {
         target = hit.rigidbody.gameObject.transform;
         interactable = target.GetComponent<Interactable>();
         interactable.player = transform.gameObject;
     }
-    void FaceTarget()
+    void FaceTarget() // ABSTRACTION
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    void StopAgent(Interactable target)
+    void StopAgent(Interactable target) // ABSTRACTION
     {
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance <= interactable.radius)

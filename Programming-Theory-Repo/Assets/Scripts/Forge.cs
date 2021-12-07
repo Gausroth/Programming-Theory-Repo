@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class Forge : Interactable // INHERITANCE
 {
-    public GameObject forgePanel;
+    public GameObject forgePanel, stonePetRock, tinPetRock, copperPetRock, bronzePetRock;
+
     public HUD hud;
 
-    public string forgeOreType1;
-    public string forgeOreType2;
+    string forgeOreType1, forgeOreType2;
+
+    Vector3 spawnPosition = new Vector3(0, 0.25f, -6);
 
     protected override void Update()
     {
         base.Update();
-        if(player == null)
+        if (player == null)
         {
             CloseUI();
         }
@@ -26,28 +28,50 @@ public class Forge : Interactable // INHERITANCE
         forgePanel.SetActive(true);
     }
 
-    public void CloseUI()
+    public void CloseUI() // ABSTRACTION
     {
         forgePanel.SetActive(false);
     }
 
     //Forge Button
-    public void ForgePetRock()
+    public void ForgePetRock() // ABSTRACTION
     {
         if (forgeOreType1 == "stone" && forgeOreType2 == "stone")
         {
-            Debug.Log("Creating Stone Pet");
-            forgeOreType1 = null;
-            forgeOreType2 = null;
+            Instantiate(stonePetRock, spawnPosition, Quaternion.identity);
+            ClearForge();
+            return;
         }
+        else if (forgeOreType1 == "tin" && forgeOreType2 == "tin")
+        {
+            Instantiate(tinPetRock, spawnPosition, Quaternion.identity);
+            ClearForge();
+            return;
+        }
+        else if (forgeOreType1 == "copper" && forgeOreType2 == "copper")
+        {
+            Instantiate(copperPetRock, spawnPosition, Quaternion.identity);
+            ClearForge();
+            return;
+        }
+        else if (forgeOreType1 == "tin" && forgeOreType2 == "copper" || forgeOreType1 == "copper" && forgeOreType2 == "tin")
+        {
+            Instantiate(bronzePetRock, spawnPosition, Quaternion.identity);
+            ClearForge();
+            return;
+        }
+        else
+        {
+            return;
+        }
+
     }
-    public void AddToForge(string oreType)
+    public void AddToForge(string oreType) // ABSTRACTION
     {
         if (!hud.forgePanel.gameObject.activeSelf)
         {
             return;
         }
-        Debug.Log("Added " + oreType + " to forge");
         if (!hud.orePanel1.gameObject.activeSelf)
         {
             switch (oreType)
@@ -128,10 +152,8 @@ public class Forge : Interactable // INHERITANCE
         }
         hud.UpdateInventory();
     }
-    public void RemoveFromForge(Button button)
+    public void RemoveFromForge(Button button) // ABSTRACTION
     {
-        Debug.Log("Removed Ore from forge");
-
         string buttonName = button.gameObject.name;
 
         if (buttonName == "OreImage1")
@@ -187,5 +209,15 @@ public class Forge : Interactable // INHERITANCE
             }
         }
         hud.UpdateInventory();
+    }
+
+    public void ClearForge() // ABSTRACTION
+    {
+        hud.orePanel1.sprite = null;
+        hud.orePanel1.gameObject.SetActive(false);
+        hud.orePanel2.sprite = null;
+        hud.orePanel2.gameObject.SetActive(false);
+        forgeOreType1 = null;
+        forgeOreType2 = null;
     }
 }
