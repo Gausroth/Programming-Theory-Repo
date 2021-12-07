@@ -15,6 +15,11 @@ public class HUD : MonoBehaviour
 
     public Sprite stoneSprite, tinSprite, copperSprite;
 
+    private void Start()
+    {
+        UpdatePlayerName();
+    }
+
     public void UpdateInventory() // ABSTRACTION
     {
         stone.text = GameManager.Instance.stone.ToString();
